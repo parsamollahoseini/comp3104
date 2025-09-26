@@ -1,3 +1,7 @@
-language: minimal
-script:
-  - echo "✅ Travis CI is running for COMP3104"
+language: node_js
+node_js:
+  - "20"
+
+cache: npm
+install: npm ci
+script: npm test
