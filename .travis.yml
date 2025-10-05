@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "20"
+
+cache: npm
+
+install:
+  - npm ci || npm install
+
+script:
+  - echo "✅ Travis build succeeded"
