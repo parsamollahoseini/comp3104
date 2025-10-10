@@ -1,11 +1,10 @@
-# ensure node and branch filter exist
 language: node_js
 node_js:
   - "stable"
 
 branches:
   only:
-    - main     # use 'master' here if your default branch is master
+    - main
 
 cache:
   directories:
@@ -16,12 +15,14 @@ install:
 
 script:
   - npm run build
-  - cp build/index.html build/404.html   # SPA refresh fix
+  - cp build/index.html build/404.html
 
 deploy:
   provider: pages
-  skip_cleanup: true                     # don't wipe the build dir
-  github_token: $github_token            # set this in Travis env vars
+  edge: true                # use latest Travis deploy client
+  token: $github_token      # <<--- keep using github_token
   local_dir: build
+  keep_history: true
+  cleanup: false
   on:
     branch: main
